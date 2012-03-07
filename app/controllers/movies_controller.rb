@@ -7,6 +7,7 @@ class MoviesController < ApplicationController
   end
 
   def index
+    flash[:notice] = "ABCDE"
     if (params.has_key?(:sort_param))
       flash[:notice] = params[:sort_param].to_s
     end
