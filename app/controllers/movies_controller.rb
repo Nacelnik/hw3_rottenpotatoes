@@ -17,7 +17,6 @@ class MoviesController < ApplicationController
   def sort
     flash[:notice] = "MRDAAAAAAAAT" + params[:sort_param].to_s
     @movies = Movie.all
-    
   end
 
   def create
