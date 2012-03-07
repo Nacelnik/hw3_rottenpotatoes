@@ -14,11 +14,12 @@ class MoviesController < ApplicationController
     ratings = params[:ratings]
     
     if ratings 
-      find_hash = {:conditions => "rating in " }
+      find_hash = {:conditions => "rating in (" }
       ratings.keys.each { |key|
         find_hash[:conditions] = find_hash[:conditions]+"'"+key.to_s+"', "
       }
-      find_hash[:conditions] = find_hash[:conditions][0, find_hash[:conditions].length-2]
+      find_hash[:conditions] = find_hash[:conditions][0, find_hash[:conditions].length-2]+")"
+      
     end
    
     
