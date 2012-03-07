@@ -7,6 +7,9 @@ class MoviesController < ApplicationController
   end
 
   def index
+    if (params.has_key?(:sort_param))
+      flash[:notice] = params[:sort_param].to_s
+    end
     @movies = Movie.all
   end
 
@@ -14,10 +17,6 @@ class MoviesController < ApplicationController
     # default: render 'new' template
   end
 
-  def sort
-    flash[:notice] = "MRDAAAAAAAAT " + params[:sort_param].to_s
-    @movies = Movie.all
-  end
 
   def create
     @movie = Movie.create!(params[:movie])
