@@ -14,8 +14,10 @@ class MoviesController < ApplicationController
     # default: render 'new' template
   end
 
-  def sort_by_title
-    flash[:notice] = "MRDAAAAAAAAT"
+  def sort
+    flash[:notice] = "MRDAAAAAAAAT" + params[:sort_param].to_s
+    @movies = Movie.all
+    
   end
 
   def create
