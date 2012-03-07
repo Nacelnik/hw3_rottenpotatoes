@@ -27,7 +27,7 @@ class MoviesController < ApplicationController
       @hilite = "none"
     end
     
-    @all_ratings = @movies[0].possible_ratings
+    @all_ratings = Movie.possible_ratings
     
   end
 
