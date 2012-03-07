@@ -10,13 +10,16 @@ class MoviesController < ApplicationController
     if (params.has_key?(:sort_param))
       if (params[:sort_param] == "title")
         @movies = Movie.all(:order => "title ASC")
+        @hilite = "title"
       elsif (params[:sort_param] == "date")
         @movies = Movie.all(:order => "release_date ASC")
+        @hilite = "date"
       else
         flash[:notice] = "Unknown parameter to sort_by, exiting."  
       end  
     else
       @movies = Movie.all
+      @hilite = "note"
     end
   end
 
