@@ -19,6 +19,7 @@ class MoviesController < ApplicationController
         find_hash[:conditions] = find_hash[:conditions]+"'"+key.to_s+"', "
       }
       find_hash[:conditions] = find_hash[:conditions][0, find_hash[:conditions].length-2]+")"
+      @checked_ratings = ratings
       
     end
    
