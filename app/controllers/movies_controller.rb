@@ -9,6 +9,8 @@ class MoviesController < ApplicationController
   end
 
   def index
+    Movie.delete_all
+    
     find_hash = Hash.new
     
     ratings = params[:ratings]
