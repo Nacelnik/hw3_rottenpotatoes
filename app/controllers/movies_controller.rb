@@ -19,7 +19,7 @@ class MoviesController < ApplicationController
       end  
     else
       @movies = Movie.all
-      @hilite = "note"
+      @hilite = "none"
     end
   end
 
