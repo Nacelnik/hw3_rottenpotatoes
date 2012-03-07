@@ -44,7 +44,7 @@ class MoviesController < ApplicationController
       @movies = Movie.all
     end
     #flash[:notice] = " delka klicu " + find_hash.keys.length.to_s + " "+find_hash[0].to_s
-    @movies = Movie.all
+    
     @all_ratings = Movie.possible_ratings
     
   end
