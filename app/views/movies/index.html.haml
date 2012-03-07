@@ -4,7 +4,7 @@
 %table#movies
   %thead
     %tr
-      %th= link_to "Movie Title", "index", {:method => :sort}, {:id=>"title_header"}
+      %th= link_to "Movie Title", "movies", {:method => :sort_by_title, :id=>"title_header"}
       %th Rating
       %th Release Date
       %th More Info
