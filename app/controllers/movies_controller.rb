@@ -20,9 +20,14 @@ class MoviesController < ApplicationController
   end
 
   def create
+    
+    if params[:method].to_s = "sort"
+      flash[:notice] = "MRDAAAAAAAAT" + params[:sort_param].to_s
+    else
     @movie = Movie.create!(params[:movie])
     flash[:notice] = "#{@movie.title} was successfully created."
     redirect_to movies_path
+    end
   end
 
   def edit
