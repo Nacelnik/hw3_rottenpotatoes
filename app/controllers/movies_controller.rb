@@ -14,9 +14,12 @@ class MoviesController < ApplicationController
       elsif (params[:sort_param] == "date")
         @movies = Movie.all(:order => "release_date ASC")
         flash[:notice] = "Sort by date"
+      else
+        flash[:notice] "Unknown parameter to sort_by, exiting."  
       end  
+    else
+      @movies = Movie.all
     end
-    @movies = Movie.all
   end
 
   def new
