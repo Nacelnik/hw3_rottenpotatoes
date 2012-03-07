@@ -38,12 +38,12 @@ class MoviesController < ApplicationController
       @hilite = "none"
     end
     
-    if (find_hash.keys.length != 0)
-      @movies = Movie.find(find_hash)
-    else
-      @movies = Movie.all
-    end
-    
+  #  if (find_hash.keys.length != 0)
+   #   @movies = Movie.find(find_hash)
+    #else
+     # @movies = Movie.all
+    #end
+    @movies = Movie.all
     @all_ratings = Movie.possible_ratings
     
   end
