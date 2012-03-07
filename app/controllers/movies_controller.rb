@@ -8,8 +8,11 @@ class MoviesController < ApplicationController
 
   def index
     flash[:notice] = "ABCDE"
-    if (params.has_key?(:sort_param))
-      flash[:notice] = params[:sort_param].to_s
+    sort_param = params[:sort_param]
+    if (sort_param == nil)
+      flash[:notice] = flash[:notice] + " neni param"
+    else
+      flash[:notice] = sort_param
     end
     @movies = Movie.all
   end
