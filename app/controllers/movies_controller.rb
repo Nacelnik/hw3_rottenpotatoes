@@ -7,14 +7,12 @@ class MoviesController < ApplicationController
   end
 
   def index
-    flash[:notice] = "ABCDE"
-    sort_param = params[:sort_param]
-    id = params[:id]
-    flash[:notice] = flash[:notice] + id.to_s
-    if (sort_param == nil)
-      flash[:notice] = flash[:notice] + " neni param"
-    else
-      flash[:notice] = sort_param
+    if (params.has_key?(:sort_param))
+      if (params[:sort_param] == "title")
+        @movies = Movie.all(:order => "title ASC")
+      elsif (params[:sort_param] == "date")
+        @movies = Movie.all(:order => "release_date ASC")
+      end  
     end
     @movies = Movie.all
   end
