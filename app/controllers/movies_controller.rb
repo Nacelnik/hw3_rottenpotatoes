@@ -9,6 +9,8 @@ class MoviesController < ApplicationController
   def index
     flash[:notice] = "ABCDE"
     sort_param = params[:sort_param]
+    id = params[:id]
+    flash[:notice] = flash[:notice] + id.to_s
     if (sort_param == nil)
       flash[:notice] = flash[:notice] + " neni param"
     else
