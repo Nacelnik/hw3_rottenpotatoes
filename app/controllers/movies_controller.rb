@@ -12,7 +12,7 @@ class MoviesController < ApplicationController
     find_hash = Hash.new
     
     
-    if (ratings != nil) 
+    if ratings 
       find_hash = {:conditions => "rating in " }
       ratings.keys.each { |key|
         find_hash[:conditions] = find_hash[:conditions]+key.to_s+", "
