@@ -10,7 +10,7 @@ class MoviesController < ApplicationController
 
   def index
     
-    @all_ratings = Movie.possible_ratings
+    
     #@all_ratings = ['G','PG','PG-13','R','NC-17']
     if (params.has_key?(:sort_param))
       if (params[:sort_param] == "title")
@@ -26,6 +26,9 @@ class MoviesController < ApplicationController
       @movies = Movie.all
       @hilite = "none"
     end
+    
+    @all_ratings = @movies[0].possible_ratings
+    
   end
 
   def new
