@@ -12,6 +12,7 @@ class MoviesController < ApplicationController
     find_hash = Hash.new
     
     ratings = params[:ratings]
+    @checked_ratings = []
     
     if ratings 
       find_hash = {:conditions => "rating in (" }
