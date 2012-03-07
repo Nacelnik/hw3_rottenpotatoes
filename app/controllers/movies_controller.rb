@@ -11,6 +11,7 @@ class MoviesController < ApplicationController
   def index
     find_hash = Hash.new
     
+    ratings = params[:ratings]
     
     if ratings 
       find_hash = {:conditions => "rating in " }
