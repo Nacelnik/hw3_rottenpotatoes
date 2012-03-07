@@ -9,40 +9,7 @@ class MoviesController < ApplicationController
   end
 
   def index
-    find_hash = Hash.new
-    
-    ratings = params[:ratings]
-    
-    if ratings 
-      find_hash = {:conditions => "rating in " }
-      ratings.keys.each { |key|
-        find_hash[:conditions] = find_hash[:conditions]+key.to_s+", "
-      }
-      find_hash[:conditions] = find_hash[:conditions][0, find_hash[:conditions].length-2]
-    end
-   
-    
-    if (params.has_key?(:sort_param))
-      if (params[:sort_param] == "title")
-        find_hash[:order] = "title ASC"
-        #@movies = Movie.find(:order => "title ASC")
-        @hilite = "title"
-      elsif (params[:sort_param] == "date")
-        find_hash[:order] = "release_date ASC"
-        #@movies = Movie.find(:order => "release_date ASC")
-        @hilite = "date"
-      else
-        flash[:notice] = "Unknown parameter to sort_by, exiting."  
-      end  
-    else
-      @hilite = "none"
-    end
-    
-    if (find_hash.keys.length != 0)
-      @movies = Movie.find(find_hash)
-    else
-      @movies = Movie.all
-    end
+    @movies = Movie.all
     
     @all_ratings = Movie.possible_ratings
     
