@@ -14,7 +14,10 @@ class MoviesController < ApplicationController
     
     if ratings
       @checked_ratings = ratings
-    end
+      session[:ratings] = ratings
+    else
+      @checked_ratings = session[:ratings]
+    end 
     
     
     if @checked_ratings 
@@ -28,7 +31,7 @@ class MoviesController < ApplicationController
     end
     
     flash[:notice] = @checked_ratings
-   
+    session[:ratings] = @checked_ratings
     
     if (params.has_key?(:sort_param))
       if (params[:sort_param] == "title")
