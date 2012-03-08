@@ -47,6 +47,9 @@ class MoviesController < ApplicationController
     end
     
     if (params.has_key?(:sort_param))
+      
+      session[:sort_param] = params[:sort_param]
+      
       if (params[:sort_param] == "title")
         find_hash[:order] = "title ASC"
         #@movies = Movie.find(:order => "title ASC")
@@ -58,9 +61,18 @@ class MoviesController < ApplicationController
       else
         flash[:notice] = "Unknown parameter to sort_by, exiting."  
       end
+      
       if redirect_url
         redirect_url = redirect_url + "sort_param="+params[:sort_param]
       end
+      
+    elsif session.has_key?(:sort_param)
+      if redirect_url
+        redirect_url = redirect_url + "sort_param="+params[:sort_param]
+      else
+        redirect_url = "?sort_param="+session[:sort_param]
+      end
+    
     else
       @hilite = "none"
     end
