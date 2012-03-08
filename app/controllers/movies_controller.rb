@@ -68,7 +68,7 @@ class MoviesController < ApplicationController
       
     elsif session.has_key?(:sort_param)
       if redirect_url
-        redirect_url = redirect_url + "sort_param="+params[:sort_param]
+        redirect_url = redirect_url + "sort_param="+session[:sort_param]
       else
         redirect_url = "?sort_param="+session[:sort_param]
       end
