@@ -31,11 +31,8 @@ class MoviesController < ApplicationController
       }
       find_hash[:conditions] = find_hash[:conditions][0, find_hash[:conditions].length-2]+")"
     else
-      @checked_ratings = []
+      @checked_ratings = Hash.new
     end
-    
-    flash[:notice] = @checked_ratings
-    session[:ratings] = @checked_ratings
     
     if (params.has_key?(:sort_param))
       if (params[:sort_param] == "title")
