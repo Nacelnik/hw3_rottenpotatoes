@@ -23,16 +23,19 @@ class MoviesController < ApplicationController
     if ratings 
       @checked_ratings = ratings
       session[:ratings] = ratings
-      @redirect = false
     else
       #redirect_to + construct_url -> construct the url and redirect after the sort
       @checked_ratings = session[:ratings]
-      @redirect = true
-      redirect_url = "ratings[D]=1"
+      if @checked_ratings
+        redirect_url = "?"
+        @checked_ratings.keys.each { |rating| 
+          redirect_url = redirect_url + "ratings%5B"+rating+"%5D=1&"
+        }
+      end
     end 
     
-    if @redirect
-      redirect_to movies_path + "?" + redirect_url
+    if redirect_url
+      redirect_to movies_path + redirect_url
     end    
     
     if @checked_ratings  
