@@ -27,7 +27,7 @@ class MoviesController < ApplicationController
       @checked_ratings = []
     end
     
-    flash[:notice] == @checked_ratings[0]
+    flash[:notice] = @checked_ratings
    
     
     if (params.has_key?(:sort_param))
