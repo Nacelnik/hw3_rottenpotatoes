@@ -9,27 +9,33 @@ class MoviesController < ApplicationController
 
   def index
     
-    if params[:clear_session]
+    if params.has_key?(:clear_session)
       session.clear
     end
-    
-    find_hash = Hash.new
-    
-    ratings = params[:ratings]
-    
+  
     if params[:commit] == "Refresh"
       session.delete(:ratings)
     end
-    
+
+    find_hash = Hash.new
+    ratings = params[:ratings]
+
     if ratings 
       @checked_ratings = ratings
       session[:ratings] = ratings
+      @redirect = false
     else
+      #redirect_to + construct_url -> construct the url and redirect after the sort
       @checked_ratings = session[:ratings]
+      @redirect = true
+      redirect_url = "ratings[D]=1"
     end 
     
+    if @redirect
+      redirect_to movies_path + "?" + redirect_url
+    end    
     
-    if @checked_ratings 
+    if @checked_ratings  
       find_hash = {:conditions => "rating in (" }
       @checked_ratings.keys.each { |key|
         find_hash[:conditions] = find_hash[:conditions]+"'"+key.to_s+"', "
