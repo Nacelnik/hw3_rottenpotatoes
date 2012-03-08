@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
     ratings = params[:ratings]
     
     if params[:commit] == "Refresh"
-      session[:ratings] = Hash.new
+      session.delete(:ratings)
     end
     
     if ratings 
