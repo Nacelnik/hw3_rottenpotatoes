@@ -12,16 +12,17 @@ class MoviesController < ApplicationController
     find_hash = Hash.new
     
     ratings = params[:ratings]
-    @checked_ratings = []
+    if ratings
+      @checked_ratings = ratings
+    end
     
-    if ratings 
+    
+    if @checked_ratings 
       find_hash = {:conditions => "rating in (" }
-      ratings.keys.each { |key|
+      @checked_ratings.keys.each { |key|
         find_hash[:conditions] = find_hash[:conditions]+"'"+key.to_s+"', "
       }
       find_hash[:conditions] = find_hash[:conditions][0, find_hash[:conditions].length-2]+")"
-      @checked_ratings = ratings
-      
     end
    
     
