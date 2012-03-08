@@ -34,9 +34,7 @@ class MoviesController < ApplicationController
       end
     end 
     
-    if redirect_url
-      redirect_to movies_path + redirect_url
-    end    
+        
     
     if @checked_ratings  
       find_hash = {:conditions => "rating in (" }
@@ -59,9 +57,16 @@ class MoviesController < ApplicationController
         @hilite = "date"
       else
         flash[:notice] = "Unknown parameter to sort_by, exiting."  
-      end  
+      end
+      if redirect_url
+        redirect_url = redirect_url + "sort_param="+params[:sort_param]
+      end
     else
       @hilite = "none"
+    end
+    
+    if redirect_url
+      redirect_to movies_path + redirect_url
     end
     
     if (find_hash.keys.length != 0)
