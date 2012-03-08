@@ -12,6 +12,7 @@ class MoviesController < ApplicationController
     find_hash = Hash.new
     
     ratings = params[:ratings]
+    
     if ratings
       @checked_ratings = ratings
     end
@@ -23,6 +24,8 @@ class MoviesController < ApplicationController
         find_hash[:conditions] = find_hash[:conditions]+"'"+key.to_s+"', "
       }
       find_hash[:conditions] = find_hash[:conditions][0, find_hash[:conditions].length-2]+")"
+    else
+      @checked_ratings = []
     end
    
     
