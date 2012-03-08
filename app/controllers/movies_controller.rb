@@ -8,7 +8,11 @@ class MoviesController < ApplicationController
   end
 
   def index
-    session.clear
+    
+    if params[:clear_session]
+      session.clear
+    end
+    
     find_hash = Hash.new
     
     ratings = params[:ratings]
