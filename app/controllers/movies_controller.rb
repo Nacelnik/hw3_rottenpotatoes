@@ -1,6 +1,5 @@
 class MoviesController < ApplicationController
 
-  @@checked_ratings = []
 
   def show
     id = params[:id] # retrieve movie ID from URI route
@@ -14,18 +13,21 @@ class MoviesController < ApplicationController
     ratings = params[:ratings]
     
     if ratings
-      @@checked_ratings = ratings
+      @checked_ratings = ratings
     end
     
     
-    if @@checked_ratings.length > 0 
+    if @checked_ratings 
       find_hash = {:conditions => "rating in (" }
-      @@checked_ratings.keys.each { |key|
+      @checked_ratings.keys.each { |key|
         find_hash[:conditions] = find_hash[:conditions]+"'"+key.to_s+"', "
       }
       find_hash[:conditions] = find_hash[:conditions][0, find_hash[:conditions].length-2]+")"
-    
+    else
+      @checked_ratings = []
     end
+    
+    flash[:notice] == @checked_ratings
    
     
     if (params.has_key?(:sort_param))
