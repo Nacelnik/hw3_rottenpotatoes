@@ -12,7 +12,11 @@ class MoviesController < ApplicationController
     
     ratings = params[:ratings]
     
-    if ratings
+    if params[:commit] == "Refresh"
+      session[:ratings] = []
+    end
+    
+    if ratings 
       @checked_ratings = ratings
       session[:ratings] = ratings
     else
@@ -51,8 +55,9 @@ class MoviesController < ApplicationController
     
     if (find_hash.keys.length != 0)
       @movies = Movie.all(find_hash)
-   else
+    else
       @movies = Movie.all
+      #session[:ratings] = nil
     end
     #flash[:notice] = " delka klicu " + find_hash.keys.length.to_s + " "+find_hash[0].to_s
     
