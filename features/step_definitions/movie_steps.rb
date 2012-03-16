@@ -69,13 +69,32 @@ Then /I should see (all|no) movies/ do |how_many|
   
   #page.body.match("<table(.|\\n)*id=\"movies\">(.|\\n)*</table>").to_s.match("<tbody>(.|\\n)*</tbody>").should == nil
   
-  page.body.match("<table(.|\\n)*id=\"movies\">(.|\\n)*</table>").to_s.match("<tbody>(.|\\n)*</tbody>").to_s.scan(/<tr.*>.*<\/tr>/) do |scan_result|
+  scan_result = page.body.match("<table(.|\\n)*id=\"movies\">(.|\\n)*</table>").to_s.match("<tbody>(.|\\n)*</tbody>").to_s.scan(/<tr>(.|\\n)*/)
+  
     if how_many == "no"
       scan_result.length.should == 0
     else
-      can_result.length.should == Movie.all.length  
+      scan_result.length.should == Movie.all.length  
     end  
-  end  
+    
 end  
 
 
+Then /I should see the movies sorted (alphabetically|in increasing order of release date)/ do |sort_type|
+  scan_result = page.body.match("<table(.|\\n)*id=\"movies\">(.|\\n)*</table>").to_s.match("<tbody>(.|\\n)*</tbody>").to_s.scan(/<tr>(.*?)<\/tr>/m) 
+  movies = ""
+  
+  if sort_type == "alphabetically"
+    movies = Movie.order("title")
+  else
+    movies = Movie.order("release_date asc")
+  end
+  
+  index = 0
+  
+  movies.each do |movie|
+    scan_result[index].to_s.match(movie[:title]).should_not == nil
+    index = index + 1
+  end
+    
+end

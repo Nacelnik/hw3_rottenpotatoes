@@ -22,8 +22,17 @@ Background: movies have been added to database
   And I am on the RottenPotatoes home page
 
 Scenario: sort movies alphabetically
-  # your steps here
+	When I check all ratings
+	And I press the 'Refresh' button
+	And I follow "title_header"
+	Then I should see all movies
+	And I should see the movies sorted alphabetically	  
+
 
 Scenario: sort movies in increasing order of release date
-  # your steps here
+  	When I check all ratings
+	And I press the 'Refresh' button
+	And I follow "release_date_header"
+	Then I should see all movies
+	And I should see the movies sorted in increasing order of release date
 
