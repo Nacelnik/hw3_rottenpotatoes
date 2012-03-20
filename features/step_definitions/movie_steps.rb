@@ -98,3 +98,9 @@ Then /I should see the movies sorted (alphabetically|in increasing order of rele
   end
     
 end
+
+Then /the director of "(.*)" should be "(.*)"/ do |movie_title, director| 
+
+  page.body.match("Details about.*"+movie_title).should_not == nil
+  page.body.match("Director(.|\\n)*"+director).should_not == nil
+end
