@@ -104,3 +104,5 @@ Then /the director of "(.*)" should be "(.*)"/ do |movie_title, director|
   page.body.match("Details about.*"+movie_title).should_not == nil
   page.body.match("Director(.|\\n)*"+director).should_not == nil
 end
+
+
