@@ -9,7 +9,6 @@ gem 'rails', '3.1.0'
 group :development, :test do
   gem 'sqlite3'
   gem 'ruby-debug19', :require => 'ruby-debug'
-<<<<<<< HEAD
   gem 'cucumber-rails'
   gem 'cucumber-rails-training-wheels'
   gem 'database_cleaner'
@@ -19,12 +18,7 @@ group :development, :test do
   gem 'simplecov'
 end
 group :production do
-#  gem 'pg'
-=======
-end
-group :production do
   gem 'pg'
->>>>>>> dfd497a37efdfe26a0641a6226d1422919d31af1
 end
 
 # Gems used only for assets and not required
