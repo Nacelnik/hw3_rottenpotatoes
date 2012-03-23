@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
 
+
   def show
     id = params[:id] # retrieve movie ID from URI route
     @movie = Movie.find(id) # look up movie by unique ID
@@ -31,11 +32,13 @@ class MoviesController < ApplicationController
       redirect_to :sort => sort, :ratings => @selected_ratings and return
     end
     @movies = Movie.find_all_by_rating(@selected_ratings.keys, ordering)
+
   end
 
   def new
     # default: render 'new' template
   end
+
 
   def create
     @movie = Movie.create!(params[:movie])
